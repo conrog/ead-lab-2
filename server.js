@@ -17,7 +17,9 @@ function sendFile(filePath, contentType, res) {
       res.end();
     }
 
-    res.writeHead(200, { "Content-Type": contentType });
+    res.writeHead(200, {
+      "Content-Type": contentType,
+    });
     res.write(data);
     return res.end();
   });

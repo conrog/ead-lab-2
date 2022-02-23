@@ -7,9 +7,45 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <link rel="stylesheet" href=""> -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <h1>Country Website</h1>
+    <button id="get-countries" onclick="">Get Countries</button>
     <!-- <script src="" async defer></script> -->
   </body>
+
+  <script>
+    let captials;
+    let contients;
+    let costline;
+    let currency;
+    let domain;
+    let flags;
+
+    async function getCountryData() {
+      try {
+        console.log(Date());
+        captials = await $.ajax("/country-by-capital-city.json");
+        contients = await $.ajax("/country-by-continent.json");
+        costline = await $.ajax("/country-by-costline.json");
+        curreny = await $.ajax("/country-by-currency-name.json");
+        domain = await $.ajax("/country-by-domain-tld.json");
+        currency = await $.ajax("/country-by-currency-name.json");
+        flags = await $.ajax("/country-by-flag.json");
+        console.log(Date());
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    $("#get-countries").on("click", () => {
+      console.log("Hello");
+      getCountryData();
+    });
+  </script>
 </html>
