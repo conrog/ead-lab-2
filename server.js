@@ -21,7 +21,7 @@ function sendFile(filePath, contentType, res) {
       "Content-Type": contentType,
     });
     res.write(data);
-    return res.end();
+    res.end();
   });
 }
 
@@ -29,7 +29,7 @@ function requestHandler(req, res) {
   let query = url.parse(req.url, true);
   let fileName = query.pathname;
 
-  console.log(fileName);
+  // console.log(fileName);
   switch (fileName) {
     case "/index.html":
       sendFile("./website/index.html", "text/html", res);
