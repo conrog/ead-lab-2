@@ -29,7 +29,6 @@ function requestHandler(req, res) {
   let query = url.parse(req.url, true);
   let fileName = query.pathname;
 
-  // console.log(fileName);
   switch (fileName) {
     case "/index.html":
       sendFile("./website/index.html", "text/html", res);
