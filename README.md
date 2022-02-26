@@ -9,11 +9,15 @@
 
 ## Instructions
 
+When running the command below ensure that you are in the root of the project directory.
+
 To start the server run the following command:
 
 `node server.js`
 
-When running the above command ensure that you are in the root of the project directory.
+The server listens for connections on port 8080.
+
+You can view the website in the browser at the following address `http://localhost:8080/index.html` once the server is running.
 
 ## Parts Complete
 
