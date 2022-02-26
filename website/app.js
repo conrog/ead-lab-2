@@ -71,10 +71,10 @@ function displayTableData(countries) {
     document.getElementById("table-body").appendChild(tableRow);
   });
 
-  $("table").fadeIn(2000).css("display", "table");
-  $("#show-more").prop("disabled", false);
+  $("table").fadeIn(2000).css("display", "table"); //Fade in table 
+  $("#show-more").prop("disabled", false); // Enable show more button
 
-  // add on click handler to each td element
+  // Add on click handler to each td element
   $("#table-body")
     .find("td")
     .click(function () {
@@ -113,7 +113,7 @@ function reverseCurrentCaret(header) {
 
 // onclick listener for button to fetch json files from server
 $("#load-files").click(async () => {
-  $("#loading-status").text("Loading files from server...");
+  $("#loading-status").text("Loading files from server..."); 
   let countries = await getCountryData();
   //Set Timeout for 5 seconds to simiulate loading
   $("#loading-status").text(
