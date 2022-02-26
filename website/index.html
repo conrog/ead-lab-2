@@ -12,21 +12,15 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://code.jquery.com/color/jquery.color-2.2.0.min.js"
+      integrity="sha256-aSe2ZC5QeunlL/w/7PsVKmV+fa0eDbmybn/ptsKHR6I="
+      crossorigin="anonymous"
+    ></script>
     <style>
       body {
-        /* border: 1px solid black; */
-      }
-
-      #buttons {
-        /* border: 1px solid green; */
-        text-align: center;
-        padding-bottom: 1rem;
-      }
-
-      #container {
-        /* border: 1px solid red; */
-        width: 80%;
-        margin: auto;
+        background-color: white;
+        border: 1px solid black;
       }
 
       table {
@@ -35,6 +29,7 @@
         border: 1px solid blue;
         font-family: arial, sans-serif;
         border-collapse: collapse;
+        table-layout: fixed;
         display: none;
       }
 
@@ -44,20 +39,157 @@
         text-align: left;
         padding: 0.25rem;
       }
+
+      #buttons {
+        border: 1px solid green;
+        text-align: center;
+        padding-bottom: 1rem;
+      }
+
+      #colour-picker {
+        text-align: center;
+      }
+
+      #container {
+        border: 1px solid red;
+        width: 80%;
+        margin: auto;
+      }
+
+      .heading {
+        padding: 0.25rem;
+        margin: 0.25rem 0 0 0;
+        border: 1px solid grey;
+        cursor: pointer;
+      }
+
+      .content {
+        padding-top: 0.25rem;
+        margin-bottom: 0.5rem;
+        display: none;
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        border-bottom: 1px solid grey;
+        border-radius: 0 0 0.25rem 0.25rem;
+        padding: 0.25rem;
+      }
+
+      #articles {
+        width: 80%;
+        margin: auto;
+      }
+
+      #project-info {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
     <div id="container">
+      <div id="project-info">
+        <h1>Lab 3 - AJAX and JSON</h1>
+        <p>Explain how the website works...</p>
+        <p>
+          Below you can find a brief summary of the technologies used in this
+          project. Click on the headings to display the content.
+        </p>
+      </div>
+      <div id="articles">
+        <article>
+          <header onclick="hideOrShowContent(this)" id="ajax">
+            <h2 class="heading">AJAX &#9660;</h2>
+          </header>
+          <div id="ajax-content" class="content">
+            <p>
+              AJAX stands for Asynchronous JavaScript And XML. It is used in the
+              browser to send data to a web server in the background. This
+              enables websites to update sections of the page without having to
+              reload the whole page.
+            </p>
+            <p>
+              AJAX makes uses of the XMLHttpRequest object which is built into
+              all browsers to request data from a web server. When the server
+              returns a response, JavaScript is then used to process the data
+              and update the webpage.
+            </p>
+          </div>
+        </article>
+        <article>
+          <header onclick="hideOrShowContent(this)" id="json">
+            <h2 class="heading">JSON &#9660;</h2>
+          </header>
+          <div id="json-content" class="content">
+            <p>
+              JSON stands for JavaScript Object Notation. It is a lightweight
+              text based format used for storing and transmitting data. It was
+              derived from as the name suggests JavaScript object notation,
+              however, the format is differs slights as it is text based which
+              can be seen in the examples below
+            </p>
+            <p>JavaScipt Object:</p>
+            <code>
+              { name: "Conor", age : 25, address: "123 Fake Street"}
+            </code>
+            <p>JSON Object:</p>
+            <code>
+              { "name": "Conor", "age" : 25, "address": "123 Fake Street"}
+            </code>
+          </div>
+        </article>
+        <article>
+          <header onclick="hideOrShowContent(this)" id="jquery">
+            <h2 class="heading">jQuery &#9660;</h2>
+          </header>
+          <div id="jquery-content" class="content">
+            <p>
+              jQuery is a library which aims to make it easier to use JavaScript
+              on a website. It is lightweight and was developed with the idea of
+              "write less, do more".
+            </p>
+            <p>
+              jQuery takes a lot of the common tasks which can take serveral
+              lines to write in vanilla JavaScript, and provides the same
+              functionality through its various methods. These common tasks
+              include the likes of DOM manipulation, CSS manipulation, Events
+              (button clicks, mouse over, etc..), animations and AJAX requests.
+            </p>
+          </div>
+        </article>
+        <article>
+          <header onclick="hideOrShowContent(this)" id="node">
+            <h2 class="heading">Node.js &#9660;</h2>
+          </header>
+          <div id="node-content" class="content">
+            <p>
+              Node.js is a free, open source server enviroment which enables
+              developers to write their server applications using JavaScript.
+              Node.js runs on single-thread, non-blocking, asynchronous
+              programming and as a result is very memory efficient.
+            </p>
+            <p>
+              Node.js can generate webpages dynamically, perform file operations
+              (create, read, write, delete and close) on the server, collect
+              form data, and can also perform CRUD database operations.
+            </p>
+          </div>
+        </article>
+      </div>
       <div id="buttons">
-        <h1>Country Website</h1>
         <p id="loading-status"></p>
-        <button id="load-files" onclick="">Load Files</button>
-        <button id="show-more" onclick="">Show More</button>
+        <button id="load-files">Load Files</button>
+        <button id="show-more" disabled>Show More</button>
+        <button id="change-theme">Dark Theme</button>
+      </div>
+      <div id="colour-picker">
+        <p>
+          Table Cell Colour Picker:
+          <input type="color" id="table-cell-colour-picker" />
+        </p>
       </div>
       <table>
         <thead>
           <tr>
-            <th>Number</th>
+            <th style="width: 5%">No.</th>
             <th>Country</th>
             <th>Capital</th>
             <th>Continent</th>
@@ -74,27 +206,7 @@
   </body>
 
   <script>
-    let countryTableData = []; //Object used to store fetched data
-    let showAllRows = false;
-
-    // Function that merges json data from server into a single object
-    // whose key is the name of a country and value is an array of data
-    // asssoicated with that country
-    // Parameters:
-    // - array is the array of fetched json data to be iterated over
-    // - keyName is the name of the key of the object
-    // - valueName is the name of the object property
-    // function processFetchedData(array, keyName, valueName) {
-    //   for (let i = 0; i < array.length; i++) {
-    //     let key = array[i][keyName];
-    //     let value = array[i][valueName];
-    //     if (countryTableData.hasOwnProperty(key)) {
-    //       countryTableData[key].push(value);
-    //     } else {
-    //       countryTableData[key] = [value];
-    //     }
-    //   }
-    // }
+    let countryTableData = []; //Array used to store fetched data
 
     async function getCountryData() {
       let countries = [];
@@ -110,14 +222,6 @@
             $.ajax("/country-by-flag.json"),
           ]);
 
-        //Merge all fetched data into single object
-        // processFetchedData(capitals, "country", "city");
-        // processFetchedData(contients, "country", "continent");
-        // processFetchedData(costlines, "country", "costline");
-        // processFetchedData(currencies, "country", "currency_name");
-        // processFetchedData(domains, "country", "tld");
-        // processFetchedData(flags, "country", "flag_base64");
-
         //Create 2-D Array with each element consisting of the data related to each country
         //from the json files on the server
         for (let i = 0; i < capitals.length; i++) {
@@ -131,8 +235,6 @@
             flags[i].flag_base64,
           ]);
         }
-
-        console.log(countryTableData);
       } catch (error) {
         console.log(error);
       }
@@ -142,6 +244,7 @@
 
     //Function that takes the 2-d country array and creates the table
     function displayTableData(countries) {
+      let currentTabIndex = 0;
       let tableBody = document.getElementById("table-body");
 
       tableBody.innerHTML = "";
@@ -149,12 +252,16 @@
       countries.forEach((country, index) => {
         let tableRow = document.createElement("tr");
         let countryIndex = document.createElement("td");
+        countryIndex.tabIndex = currentTabIndex;
+        currentTabIndex++;
         countryIndex.innerText = index + 1;
         tableRow.appendChild(countryIndex);
 
         //Array of country data
         country.forEach((item, index) => {
           let tableData = document.createElement("td");
+          tableData.tabIndex = currentTabIndex;
+          currentTabIndex++;
           if (item === null) {
             tableData.textContent = "N/A"; //Display for null values in table
           } else {
@@ -170,30 +277,71 @@
           }
 
           tableRow.appendChild(tableData);
-          $("table").fadeIn(2000).css("display", "table");
         });
 
         document.getElementById("table-body").appendChild(tableRow);
       });
+
+      $("table").fadeIn(2000).css("display", "table");
+      $("#show-more").prop("disabled", false);
+
+      // add on click handler to each td element
+      $("#table-body")
+        .find("td")
+        .click(function () {
+          if ($(this).css("background-color") == "rgba(0, 0, 0, 0)") {
+            console.log("Change");
+            $(this).css({
+              "background-color": $("#table-cell-colour-picker").val(),
+            });
+          } else {
+            console.log("back");
+            $(this).css({ "background-color": "rgba(0, 0, 0, 0)" });
+          }
+        });
     }
 
-    // Button listener for fetching json files from server
-    $("#load-files").on("click", async () => {
+    function hideOrShowContent(header) {
+      reverseCurrentCaret(header);
+      let contentId = $(`#${header.id}-content`);
+      if (contentId.css("display") == "none") {
+        contentId.slideDown("slow");
+      } else {
+        contentId.slideUp("slow");
+      }
+    }
+
+    function reverseCurrentCaret(header) {
+      let titleNode = $(header).first();
+      let titleValue = titleNode.text();
+      let [currentTitle, currentCaret] = titleValue.trim().split(" ");
+      if (currentCaret === "▼") {
+        console.log("yes");
+        titleNode.html(`<h2 class="heading">${currentTitle} ▲</h2>`);
+      } else {
+        console.log("no");
+        titleNode.html(`<h2 class="heading">${currentTitle} ▼</h2>`);
+      }
+    }
+
+    // onclick listener for button to fetch json files from server
+    $("#load-files").click(async () => {
       $("#loading-status").text("Loading files from server...");
       let countries = await getCountryData();
       //Set Timeout for 5 seconds to simiulate loading
+      $("#loading-status").text(
+        "The files in folder '/country-objects' have been read!"
+      );
       setTimeout(() => {
         displayTableData(countries);
 
-        $("#loading-status").text(
-          "The files in folder '/country-objects' have been read!"
-        );
+        $("#loading-status").text("The table has been created!");
         $("#table-body tr:gt(19)").hide();
-      }, 5000);
+      }, 1000);
     });
 
-    // Button listener for hiding/showing more than 20 countries in the table
-    $("#show-more").on("click", (event) => {
+    // onclick listener for button to show 20 or all table rows
+    $("#show-more").click((event) => {
       if (event.currentTarget.innerText === "Show More") {
         $("#table-body tr:gt(19)").show();
         event.currentTarget.innerText = "Show Less";
@@ -202,9 +350,26 @@
         event.currentTarget.innerText = "Show More";
       }
     });
-
-    $("#loading-status").on("click", (event) => {
+    // on click listener to hide the status paragraph when clicked
+    $("#loading-status").click((event) => {
       $("#loading-status").fadeOut(1000);
+    });
+
+    // on click listener to change the colour theme of the webpage
+    $("#change-theme").click((event) => {
+      if ($("body").css("background-color") == "rgb(255, 255, 255)") {
+        $("body").animate(
+          { "background-color": "#121212", color: "#DBDBDB" },
+          "slow"
+        );
+        event.currentTarget.textContent = "Light Theme";
+      } else {
+        $("body").animate(
+          { "background-color": "white", color: "black" },
+          "slow"
+        );
+        event.currentTarget.textContent = "Dark Theme";
+      }
     });
   </script>
 </html>

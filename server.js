@@ -83,7 +83,7 @@ function requestHandler(req, res) {
       );
       break;
     default:
-      // Respond to all invalid requests with a 404 Not found
+      // Handle if requested file is not on the server
       res.writeHead(404, { "Content-Type": "text/html" });
       res.end("404 Not Found");
       break;
