@@ -1,0 +1,62 @@
+body {
+  background-color: white;
+  font-family: arial, sans-serif;
+}
+
+table {
+  width: 80%;
+  margin: auto;
+  border-collapse: collapse;
+  table-layout: fixed;
+  display: none;
+}
+
+td,
+th {
+  border: 1px solid lightgrey;
+  text-align: left;
+  padding: 0.25rem;
+}
+
+#buttons {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+#colour-picker {
+  text-align: center;
+}
+
+#container {
+  width: 80%;
+  margin: auto;
+}
+
+.heading {
+  padding: 0.25rem;
+  margin: 0.25rem 0 0 0;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.content {
+  padding-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  display: none;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-radius: 0 0 0.25rem 0.25rem;
+  padding: 0.25rem;
+}
+
+#articles {
+  width: 80%;
+  margin: auto auto 1rem auto;
+}
+
+#project-info {
+  text-align: justify;
+  width: 80%;
+  margin: auto;
+}
