@@ -20,13 +20,11 @@
     <style>
       body {
         background-color: white;
-        border: 1px solid black;
       }
 
       table {
         width: 80%;
         margin: auto;
-        border: 1px solid blue;
         font-family: arial, sans-serif;
         border-collapse: collapse;
         table-layout: fixed;
@@ -41,7 +39,6 @@
       }
 
       #buttons {
-        border: 1px solid green;
         text-align: center;
         padding-bottom: 1rem;
       }
@@ -51,7 +48,6 @@
       }
 
       #container {
-        border: 1px solid red;
         width: 80%;
         margin: auto;
       }
@@ -76,24 +72,54 @@
 
       #articles {
         width: 80%;
-        margin: auto;
+        margin: auto auto 1rem auto;
       }
 
       #project-info {
-        text-align: center;
+        text-align: justify;
+        width: 80%;
+        margin: auto;
       }
     </style>
   </head>
   <body>
     <div id="container">
+      <h1 style="text-align: center">Lab 3 - AJAX and JSON</h1>
       <div id="project-info">
-        <h1>Lab 3 - AJAX and JSON</h1>
-        <p>Explain how the website works...</p>
         <p>
-          Below you can find a brief summary of the technologies used in this
-          project. Click on the headings to display the content.
+          This website is served from a Node.js server running on port 8080.
         </p>
+        <p>
+          The website offers several functionalities which are implemented using
+          technologies such as AJAX, jQuery and JSON. jQuery is used to perform
+          AJAX requests to the server for the json files which are contained
+          within the country-objects directory. These requests are handled by
+          the server via a request handler, which returns the requested document
+          (html, js, css and json).
+        </p>
+        <p>
+          jQuery is used for a number of functions on the website. It is used to
+        </p>
+        <ul>
+          <li>Make AJAX requests to the server.</li>
+          <li>Change the websites colour theme.</li>
+          <li>Fade in the counties table when loaded.</li>
+          <li>Show 20 or all table rows when button is clicked.</li>
+          <li>Fade out the loading status message when clicked.</li>
+          <li>
+            Change the table cell colours to the selected colour when clicked
+            and revert when clicked again.
+          </li>
+          <li>Change disabled property of "Show More" button.</li>
+          <li>
+            Show/hide the summary of each of the technologies used sections.
+          </li>
+        </ul>
       </div>
+      <p style="text-align: center">
+        Below you can find a brief summary of the technologies mentioned above
+        in this project. Click on the headings to display the content.
+      </p>
       <div id="articles">
         <article>
           <header onclick="hideOrShowContent(this)" id="ajax">
@@ -107,7 +133,7 @@
               reload the whole page.
             </p>
             <p>
-              AJAX makes uses of the XMLHttpRequest object which is built into
+              AJAX makes use of the XMLHttpRequest object which is built into
               all browsers to request data from a web server. When the server
               returns a response, JavaScript is then used to process the data
               and update the webpage.
@@ -123,10 +149,10 @@
               JSON stands for JavaScript Object Notation. It is a lightweight
               text based format used for storing and transmitting data. It was
               derived from as the name suggests JavaScript object notation,
-              however, the format is differs slights as it is text based which
-              can be seen in the examples below
+              however, the format differs slightly, it is text based which can
+              be seen in the examples below
             </p>
-            <p>JavaScipt Object:</p>
+            <p>JavaScript Object:</p>
             <code>
               { name: "Conor", age : 25, address: "123 Fake Street"}
             </code>
@@ -161,10 +187,10 @@
           </header>
           <div id="node-content" class="content">
             <p>
-              Node.js is a free, open source server enviroment which enables
+              Node.js is a free, open-source server environment which enables
               developers to write their server applications using JavaScript.
-              Node.js runs on single-thread, non-blocking, asynchronous
-              programming and as a result is very memory efficient.
+              Node.js is runs a single-thread, non-blocking, and offer
+              asynchronous programming and as a result is very memory efficient.
             </p>
             <p>
               Node.js can generate webpages dynamically, perform file operations
@@ -183,7 +209,7 @@
       <div id="colour-picker">
         <p>
           Table Cell Colour Picker:
-          <input type="color" id="table-cell-colour-picker" />
+          <input type="color" value="#4645b0" id="table-cell-colour-picker" />
         </p>
       </div>
       <table>
@@ -244,7 +270,6 @@
 
     //Function that takes the 2-d country array and creates the table
     function displayTableData(countries) {
-      let currentTabIndex = 0;
       let tableBody = document.getElementById("table-body");
 
       tableBody.innerHTML = "";
@@ -252,20 +277,18 @@
       countries.forEach((country, index) => {
         let tableRow = document.createElement("tr");
         let countryIndex = document.createElement("td");
-        countryIndex.tabIndex = currentTabIndex;
-        currentTabIndex++;
         countryIndex.innerText = index + 1;
         tableRow.appendChild(countryIndex);
 
         //Array of country data
         country.forEach((item, index) => {
           let tableData = document.createElement("td");
-          tableData.tabIndex = currentTabIndex;
-          currentTabIndex++;
+
           if (item === null) {
             tableData.textContent = "N/A"; //Display for null values in table
           } else {
             if (index === 6) {
+              // this is the index for the counties flags so they must be placed in an img element
               let image = document.createElement("img");
               image.src = item;
               image.height = 25;
@@ -290,17 +313,16 @@
         .find("td")
         .click(function () {
           if ($(this).css("background-color") == "rgba(0, 0, 0, 0)") {
-            console.log("Change");
             $(this).css({
               "background-color": $("#table-cell-colour-picker").val(),
             });
           } else {
-            console.log("back");
             $(this).css({ "background-color": "rgba(0, 0, 0, 0)" });
           }
         });
     }
 
+    // Function used to hide or show technologies text content
     function hideOrShowContent(header) {
       reverseCurrentCaret(header);
       let contentId = $(`#${header.id}-content`);
@@ -311,15 +333,14 @@
       }
     }
 
+    // Function to change the direction of the caret when content is shown or hidden
     function reverseCurrentCaret(header) {
       let titleNode = $(header).first();
       let titleValue = titleNode.text();
       let [currentTitle, currentCaret] = titleValue.trim().split(" ");
       if (currentCaret === "▼") {
-        console.log("yes");
         titleNode.html(`<h2 class="heading">${currentTitle} ▲</h2>`);
       } else {
-        console.log("no");
         titleNode.html(`<h2 class="heading">${currentTitle} ▼</h2>`);
       }
     }
@@ -337,7 +358,7 @@
 
         $("#loading-status").text("The table has been created!");
         $("#table-body tr:gt(19)").hide();
-      }, 1000);
+      }, 5000);
     });
 
     // onclick listener for button to show 20 or all table rows
