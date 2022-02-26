@@ -1,4 +1,4 @@
-# Enterprise Application Development – Lab 2
+# Enterprise Application Development – Lab 3 - AJAX and JSON
 
 | Student Information |                                                                            |
 | ------------------- | -------------------------------------------------------------------------- |
