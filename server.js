@@ -15,13 +15,13 @@ function sendFile(filePath, contentType, res) {
     if (error) {
       res.writeHead(404, { "Content-Type": contentType });
       res.end();
+    } else {
+      res.writeHead(200, {
+        "Content-Type": contentType,
+      });
+      res.write(data);
+      res.end();
     }
-
-    res.writeHead(200, {
-      "Content-Type": contentType,
-    });
-    res.write(data);
-    res.end();
   });
 }
 
@@ -35,6 +35,9 @@ function requestHandler(req, res) {
       break;
     case "/app.js":
       sendFile("./website/app.js", "text/javascript", res);
+      break;
+    case "/styles.css":
+      sendFile("./website/styles.css", "text/css", res);
       break;
     case "/favicon.ico":
       res.end();
